@@ -6,19 +6,19 @@ import java.net.ServerSocket;
 public class Server {
     public static void main(String[] args) throws IOException {
         try ( ServerSocket server = new ServerSocket(8000)) {
-            System.out.println("Server started!");
+            System.out.println("Сервер Запущен!");
             while (true) {
                 Phone phone = new Phone(server);
                 new Thread(() ->{
                     String request = phone.readLine();
-                    System.out.println("Request:" + request);
-                    String response = (int) (Math.random() * 30 - 10) + "";
+                    System.out.println("Запрос: " + request);
+                    String response = (int) (Math.random() * 25 - 10) + "";
                     try {
-                        Thread.sleep(4000);
+                        Thread.sleep(6000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    System.out.println("Response: " + response);
+                    System.out.println("Ответ: " + response);
                     phone.writeLine(response);
                     try {
                         phone.close();
